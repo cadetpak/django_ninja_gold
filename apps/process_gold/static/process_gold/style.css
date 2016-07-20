@@ -1,0 +1,25 @@
+.options {
+	border: 2px solid purple;
+	border-radius: 25px;
+	width: 150px;
+	text-align: center;
+	display: inline-block;
+}
+
+#display_log {
+	border: 2px solid purple;
+	border-radius: 25px;
+	width: 600px;
+	height: 300px;
+	text-align: center;
+	overflow: auto;
+
+}
+
+#container {
+	font-family: "Arial";
+}
+
+.positive {
+	color: green;
+}

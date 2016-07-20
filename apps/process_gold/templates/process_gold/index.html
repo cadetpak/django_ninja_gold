@@ -1,0 +1,67 @@
+<html>
+	<head>
+		<title>Django - Ninja Gold Game</title>
+		<!-- Need these two lines to render CSS page! -->
+		{% load staticfiles %}
+		<link rel="stylesheet" href="{% static 'process_gold/style.css' %}">
+	</head>
+	<body>
+	<div id="container">
+		<div id="current_gold">
+			<h3>Your Gold: {{ request.session.gold }} </h3>
+			<form action="/new_game" method="POST">
+				{% csrf_token %}
+				<input type="submit" value="New Game"/>
+			</form>
+		</div>
+		<div id="clickables">
+			<div class="options">
+				<h1>Farm</h1>
+				<p>+10-20 gold</p>
+				<form action="/process_gold" method="POST">
+					{% csrf_token %}
+					<input type="hidden" name="building" value="farm"/>
+					<input type="submit" value="Find Gold!"/>
+				</form>
+			</div> 
+			<div class="options">
+				<h1>Cave</h1>
+				<p>+5-10 gold</p>
+				<form action="/process_gold" method="POST">
+					{% csrf_token %}
+					<input type="hidden" name="building" value="cave"/>
+					<input type="submit" value="Find Gold!"/>
+				</form>
+			</div>
+			<div class="options">
+				<h1>House</h1>
+				<p>+2-5 gold</p>
+				<form action="/process_gold" method="POST">
+					{% csrf_token %}
+					<input type="hidden" name="building" value="house"/>
+					<input type="submit" value="Find Gold!"/>
+				</form>
+			</div>
+			<div class="options">
+				<h1>Casino</h1>
+				<p>+/- 0-50 gold</p>
+				<form action="/process_gold" method="POST">
+					{% csrf_token %}
+					<input type="hidden" name="building" value="casino"/>
+					<input type="submit" value="Find Gold!"/>
+				</form>
+			</div>
+		</div>
+
+		<div id="log">
+			<h3>Activities:</h3>
+			<div id="display_log">
+				<!-- 'reversed' displays newest items first -->
+				{% for each in request.session.activity_log reversed %}
+					<p> {{ each }}</p>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	</body>
+</html>
